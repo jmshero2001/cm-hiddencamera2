@@ -1,0 +1,28 @@
+PODS:
+  - AdvancedPageControl (0.9.0)
+  - ApphudSDK (3.0.1)
+  - FittedSheets (2.7.1)
+  - TinyConstraints (4.0.2)
+
+DEPENDENCIES:
+  - AdvancedPageControl
+  - ApphudSDK (= 3.0.1)
+  - FittedSheets
+  - TinyConstraints
+
+SPEC REPOS:
+  trunk:
+    - AdvancedPageControl
+    - ApphudSDK
+    - FittedSheets
+    - TinyConstraints
+
+SPEC CHECKSUMS:
+  AdvancedPageControl: 39e3b32b00b2d324c534f8e17cc6c5be9abe84b7
+  ApphudSDK: ca4114f00eedd45fe9eb0afbb01559c8db2aa703
+  FittedSheets: 38ec85129bf5c970f99d4dba4fbf48185c5fa98a
+  TinyConstraints: 7b7ccc0c485bb3bb47082138ff28bc33cd49897f
+
+PODFILE CHECKSUM: 68e01a0ea41115c4e40ef9ec35aea9ceb2d6ad7c
+
+COCOAPODS: 1.16.2
