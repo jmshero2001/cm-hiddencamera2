@@ -1,0 +1,44 @@
+
+workflows:
+  ios-native-workflow:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: hc_my_key
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.hidden.camera.application
+      vars:
+        BUNDLE_ID: "com.hidden.camera.application"
+        XCODE_WORKSPACE: "hidden-camera-v1.xcworkspace" # <-- Put the name of your Xcode workspace here
+        XCODE_SCHEME: "hidden-camera-v1" # <-- Put the name of your Xcode scheme here
+        APP_STORE_APPLE_ID: 6745787696
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Set up provisioning profiles settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Build ipa for distribution
+        script: | 
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/hidden-camera-v1.xcworkspace" \
+            --scheme "hidden-camera-v1"
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+    publishing:
+      app_store_connect:
+        auth: integration
+
+        # Configuration related to TestFlight (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_testflight: false
+
+
+        # Configuration related to App Store (optional)
+        # Note: This action is performed during post-processing.
+        submit_to_app_store: false
